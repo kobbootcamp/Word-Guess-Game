@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Word Challenge</title>
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <script>
+        var game = {
+            wordsToGuess: ["Touchdown", "Flag", "Yardline", "ForwardPass"],
+            randomGenerator: function () {
+                var ranNum = Math.floor(Math.random() * 4);
+                return ranNum;
+            },
+            displayBlanks: function (word) {
+                var wordHolder = "";
+                for (var i = 1; i <= word.length; i++) {
+                    wordHolder = wordHolder + "_ ";
+                }
+                    return wordHolder;
+                    console.log(wordHolder);
+                
+            }
+        };
+
+        // console.log(game.displayBlanks("roadrunner"));
+        document.write(game.displayBlanks(game.wordsToGuess[game.randomGenerator()]));
+    </script>
+
+
+
+</body>
+
+</html>
