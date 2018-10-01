@@ -16,10 +16,13 @@
 <body>
 
     <script>
+        var usedArr =[];
+        var thisWord
         var game = {
-            wordsToGuess: ["Touchdown", "Flag", "Yardline", "ForwardPass"],
+            wordsToGuess: ["touchdown", "flag", "yardline", "forwardpass"],
             randomGenerator: function () {
                 var ranNum = Math.floor(Math.random() * 4);
+                thisWord = game.wordsToGuess[ranNum]
                 return ranNum;
             },
             displayBlanks: function (word) {
@@ -27,11 +30,30 @@
                 for (var i = 1; i <= word.length; i++) {
                     wordHolder = wordHolder + "_ ";
                 }
-                    return wordHolder;
-                    console.log(wordHolder);
-                
-            }
-        };
+                    return wordHolder;           
+             },
+             writeToUsed: function (letterUsed) {
+                usedArr.push(letterUsed);
+                console.log(usedArr[usedArr.length - 1]);
+             },
+             readLetter: function (letterUsed) {
+                for (var i=1; i <= thisWord.length; i++) {
+                    if (letterUsed === thisWord.charAt(i)) {
+                        console.log ("you got the letter " + letterUsed)
+                    }
+                }
+               
+             }
+       };
+
+
+
+
+ document.onkeyup = function(event) {
+        game.writeToUsed(event.key)
+        game.readLetter(event.key)
+     }
+
 
         // console.log(game.displayBlanks("roadrunner"));
         document.write(game.displayBlanks(game.wordsToGuess[game.randomGenerator()]));
