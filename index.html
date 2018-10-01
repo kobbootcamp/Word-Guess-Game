@@ -7,7 +7,7 @@
 
     <title>Word Challenge</title>
 
-    
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/reset.css">
@@ -16,11 +16,26 @@
 
 <body>
 
+    <h1>
+        <p id="hangmanBox"></p>
+    </h1>
+
+    <h1>
+        <p id="lettersUsedBox"></p>
+    </h1>
+    <h1>
+        <p id="downAndDistance"></p>
+    </h1>
+
     <script>
         var usedArr = [];
-        var thisWord
+        var thisWord;
+        var thisWordArr = [];
+        var hangmanBox;
+        var down = 1;
         var game = {
             wordsToGuess: ["touchdown", "flag", "yardline", "forwardpass"],
+            downAndDistance: ["1st down", "2nd down", "3rd Down", "4th Down", "Turnover!"],
             randomGenerator: function () {
                 var ranNum = Math.floor(Math.random() * 4);
                 thisWord = game.wordsToGuess[ranNum]
@@ -29,35 +44,92 @@
             displayBlanks: function (word) {
                 var wordHolder = "";
                 for (var i = 1; i <= word.length; i++) {
-                    wordHolder = wordHolder + "_ ";
+                    wordHolder = wordHolder + " * ";
+                    thisWordArr.push(" * ");
+                    // console.log(thisWordArr[i])
                 }
                 return wordHolder;
             },
             writeToUsed: function (letterUsed) {
+                var temp = ""
                 usedArr.push(letterUsed);
-                console.log(usedArr[usedArr.length - 1]);
+                for (var i = 0; i < usedArr.length; i++) {
+                    temp = temp + usedArr[i] + ",";
+                }
+                down++;
+                document.getElementById("lettersUsedBox").innerHTML = temp;
+
+                // console.log(usedArr[usedArr.length - 1]);
             },
             readLetter: function (letterUsed) {
-                for (var i = 1; i <= thisWord.length; i++) {
+                for (var i = 0; i < thisWord.length; i++) {
                     if (letterUsed === thisWord.charAt(i)) {
-                        console.log("you got the letter " + letterUsed)
+                        // console.log("you got the letter " + letterUsed);
+                        thisWordArr[i] = thisWord.charAt(i);
+                        down = 1;
                     }
                 }
+            },
+            displayThisWordArr: function () {
+                var temp = ""
+                for (var i = 0; i < thisWordArr.length; i++) {
+                    temp = temp + thisWordArr[i];
+                }
+
+                // console.log(thisWordArr[i]);
+                document.getElementById("hangmanBox").innerHTML = temp;
+            },
+            didWeWin: function () {
+                var winner = true;
+                for (var i = 0; i < thisWordArr.length; i++) {
+                    if (thisWordArr[i] == " * ") {
+                        winner = false;
+                    };
+                };
+                if (winner) {
+                    return winner;
+                }
+
+            },
+            didWeLose: function() {
+                if (down = 5) {
+                    return false
+                    }
 
             }
         };
 
 
+        //loop
 
+document.write(game.displayBlanks(game.wordsToGuess[game.randomGenerator()]));
 
-        document.onkeyup = function (event) {
-            game.writeToUsed(event.key)
-            game.readLetter(event.key)
-        }
+        // do {
+            // if (down < 5) {
+       
+            document.onkeyup = function (event) {
+                game.writeToUsed(event.key);
+                game.readLetter(event.key);
+                game.displayThisWordArr();
+                if (game.didWeWin()) {
+                    document.getElementById("lettersUsedBox").innerHTML = "YOU WIN!"
+                };
+                if (game.didWeLose()) {
+                    document.getElementById("lettersUsedBox").innerHTML = "TURNOVER!  GAME OVER"
+                };
 
+            };
+    
+        // else {
+            // document.getElementById("lettersUsedBox").innerHTML = "TURNOVER!  GAME OVER"
+        // };
+            // document.getElementById("lettersUsedBox").innerHTML = "TURNOVER!  GAME OVER"
 
+        // } while (down < 5);
+        // document.getElementById("lettersUsedBox").innerHTML = "TURNOVER!  GAME OVER"
         // console.log(game.displayBlanks("roadrunner"));
-        document.write(game.displayBlanks(game.wordsToGuess[game.randomGenerator()]));
+        // document.write(game.displayBlanks(game.wordsToGuess[game.randomGenerator()]));
+
     </script>
 
 
