@@ -1,6 +1,6 @@
 @font-face {
     font-family: SFSportsNight;
-    src: url(fonts/sf-sports-night.regular.ttf);
+    src: url(Fonts/sf-sports-night.regular.ttf);
 }
 body {
     background-image: url("../images/background.jpg");
