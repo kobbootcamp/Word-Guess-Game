@@ -41,13 +41,37 @@ body {
 }
 #downAndDistance{
     width: 100%;
-    background: orange;
+    /* background: green; */
+    /* background: orange; */
+    /* background:orangered; */
+    /* background: red; */
     font-size: 50px;
     color: white;
     z-index:2;
     text-align: center;
     margin:0 auto;
 }
+
+
+.downcolor1 {
+    background: green;
+}
+.downcolor2 {
+    background: yellowgreen;
+}
+
+.downcolor3 {
+    background: orange;
+}
+
+.downcolor4 {
+    background: orangered;
+}
+
+.downcolor5 {
+    background: red;
+}
+
 #pageTitle {
     font-family: "SFSportsNight";
     font-size: 60px;

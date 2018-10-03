@@ -46,26 +46,26 @@
         </div>
 
 
-
-
-
         <script>
             var usedArr = [];
             var thisWord;
             var thisWordArr = [];
-            // var hangmanBox;
             var guessedLetter;
             var down = 1;
+            var downcolor;
             var game = {
                 //array of words to guess
-                wordsToGuess: ["touchdown", "flag", "yardline", "forwardpass", "hike", "referee", "fieldgoal", "penalty", "facemask", "sack", "tackle", "quarterback"],
+                wordsToGuess: ["touchdown", "flag", "yardline", "forwardpass", "hike", "referee", "fieldgoal", 
+                "penalty", "facemask", "sack", "tackle", "quarterback", "snap", "punt", "catch", "fumble"],
                 //array storing the verbage of down (sans distance)
                 downAndDistance: ["1st Down!", "2nd Down", "3rd Down", "4th Down", "Turnover!!"],
+                downColor: ["downcolor1", "downcolor2", "downcolor3", "downcolor4", "downcolor5"],
+                // TestArr: ["downs",["1st Down!", "2nd Down", "3rd Down", "4th Down", "Turnover!!"],["colors" ["white", "yellow", "orange", "red"]]],
                 randomGenerator: function () {
                     //used to pick a word randomly
 
                     //declare the variable and assign a random number
-                    var ranNum = Math.floor(Math.random() * 12) -1;
+                    var ranNum = Math.floor(Math.random() * 16) -1;
 
                     //update thisWord variable with the word for the game
                     thisWord = game.wordsToGuess[ranNum]
@@ -131,6 +131,10 @@
 
                     //update the downAndDistance box on the screen
                     document.getElementById("downAndDistance").innerHTML = game.downAndDistance[down - 1]
+
+                    //update the background color of the down marker
+                    document.getElementById("downAndDistance").className = game.downColor[down - 1]
+
                 },
                 readLetter: function (letterUsed) {
                     //read the letter and determine if it is a winner
@@ -147,6 +151,9 @@
 
                             //reset the downAndDistance div to show 1st and ten
                             document.getElementById("downAndDistance").innerHTML = game.downAndDistance[down - 1];
+
+                            //reset the background color of the down marker
+                            document.getElementById("downAndDistance").className = game.downColor[down - 1]
 
                             game.displayThisWordArr()
                         }
@@ -205,21 +212,15 @@
 
                 //initiate the downAndDistance box
                 document.getElementById("downAndDistance").innerHTML = "Set...Hike!";
-
+                
                 //reset the down to 1st
                 down = 1;
 
-                //reset the arrays
-                // thisWordArr = [];
-                // usedArr = [];
-                // thisWord="";
-                // guessedLetter="";
-
+                //reset the background color of the down marker
+                document.getElementById("downAndDistance").className = game.downColor[down - 1]
             }
 
 
-            //load the downAndDistance div
-            // document.getElementById("downAndDistance").innerHTML = game.downAndDistance[down-1];
 
             //listen for keystrokes
             document.onkeyup = function (event) {
