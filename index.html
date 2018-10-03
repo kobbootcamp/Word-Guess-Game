@@ -33,13 +33,13 @@
 
                     <p id="hangmanBox"></p>
                     <!-- <p class="lead"> -->
-                        <div id="lettersUsedTitle">Letters used:
+                    <div id="lettersUsedTitle">Letters used:
                         <p id="lettersUsedBox"></p>
-                        </div>
-                        <br />
-                        <p class="text-center"> <a class="btn btn-primary btn-lg text-center" 
-                            href="#" onclick="KickOff()" role="button">Kick Off</a></p>
-                        <!-- </p> -->
+                    </div>
+                    <br />
+                    <p class="text-center"> <a class="btn btn-primary btn-lg text-center" href="#" onclick="KickOff()"
+                            role="button">Kick Off</a></p>
+                    <!-- </p> -->
                 </div>
             </div>
 
@@ -55,8 +55,8 @@
             var downcolor;
             var game = {
                 //array of words to guess
-                wordsToGuess: ["touchdown", "flag", "yardline", "forwardpass", "hike", "referee", "fieldgoal", 
-                "penalty", "facemask", "sack", "tackle", "quarterback", "snap", "punt", "catch", "fumble"],
+                wordsToGuess: ["touchdown", "flag", "yardline", "forwardpass", "hike", "referee", "fieldgoal",
+                    "penalty", "facemask", "sack", "tackle", "quarterback", "snap", "punt", "catch", "fumble"],
                 //array storing the verbage of down (sans distance)
                 downAndDistance: ["1st Down!", "2nd Down", "3rd Down", "4th Down", "Turnover!!"],
                 downColor: ["downcolor1", "downcolor2", "downcolor3", "downcolor4", "downcolor5"],
@@ -65,7 +65,7 @@
                     //used to pick a word randomly
 
                     //declare the variable and assign a random number
-                    var ranNum = Math.floor(Math.random() * 16) -1;
+                    var ranNum = Math.floor(Math.random() * 16) - 1;
 
                     //update thisWord variable with the word for the game
                     thisWord = game.wordsToGuess[ranNum]
@@ -212,7 +212,7 @@
 
                 //initiate the downAndDistance box
                 document.getElementById("downAndDistance").innerHTML = "Set...Hike!";
-                
+
                 //reset the down to 1st
                 down = 1;
 

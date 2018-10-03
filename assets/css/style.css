@@ -1,20 +1,15 @@
 @font-face {
     font-family: SFSportsNight;
     src: url(fonts/sf-sports-night.regular.ttf);
-
-    }
-
-
-
+}
 body {
-        background-image: url("../images/background.jpg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        background-color: #cccccc;
-        z-index:-1;
-     }
-
+    background-image: url("../images/background.JPG");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: #cccccc;
+    z-index:-1;
+}
 #hangmanBox{
     width: auto;
     font-size: 60px;
@@ -24,9 +19,7 @@ body {
     margin:0 auto;
     margin-top: 5%;
     margin-bottom: 5%;
-
 }
-
 #lettersUsedBox{
     width: auto;
     background-color: blue;
@@ -41,37 +34,27 @@ body {
 }
 #downAndDistance{
     width: 100%;
-    /* background: green; */
-    /* background: orange; */
-    /* background:orangered; */
-    /* background: red; */
     font-size: 50px;
     color: white;
     z-index:2;
     text-align: center;
     margin:0 auto;
 }
-
-
 .downcolor1 {
     background: green;
 }
 .downcolor2 {
     background: yellowgreen;
 }
-
 .downcolor3 {
     background: orange;
 }
-
 .downcolor4 {
     background: orangered;
 }
-
 .downcolor5 {
     background: red;
 }
-
 #pageTitle {
     font-family: "SFSportsNight";
     font-size: 60px;
@@ -83,13 +66,11 @@ body {
     border-width: 2px;
     border-color: darkblue;
     margin-top: 20px;
-
 }
 img {
     Float:left;
     z-index:2;
 }
-
 .card {
     z-index: 1;
     position: absolute;
@@ -101,7 +82,6 @@ img {
      font-size: 30px;
      text-align:center;
  }
-
  #lettersUsedTitle{
     font-size: 30px;
     color:blue;
