@@ -11,6 +11,7 @@ body {
     z-index:-1;
 }
 #hangmanBox{
+    font-family: 'Alegreya Sans SC', sans-serif;
     width: auto;
     font-size: 60px;
     color: black;
@@ -33,6 +34,7 @@ body {
     padding: 10px;
 }
 #downAndDistance{
+    font-family: 'Roboto', sans-serif;
     width: 100%;
     font-size: 50px;
     color: white;
@@ -83,6 +85,7 @@ img {
      text-align:center;
  }
  #lettersUsedTitle{
+    font-family: 'Roboto', sans-serif;
     font-size: 30px;
     color:blue;
     margin: auto;
