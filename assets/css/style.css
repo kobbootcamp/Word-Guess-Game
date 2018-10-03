@@ -1,11 +1,10 @@
 @font-face {
-    font-family: "SF Sports Night";
-    src: url("assets/css/fonts/SFSportsNight.eot");
-    /* src:  */
-    /* url("css/fonts/Harabara.woff") format("woff"), */
-    /* url("css/fonts/Harabara.otf") format("opentype"), */
-    /* url("css/fonts/Harabara.svg#filename") format("svg"); */
+    font-family: SFSportsNight;
+    src: url(fonts/sf-sports-night.regular.ttf);
+
     }
+
+
 
 body {
         background-image: url("../images/background.jpg");
@@ -51,7 +50,7 @@ body {
 }
 #pageTitle {
     font-family: "SFSportsNight";
-    font-size: 40px;
+    font-size: 60px;
     color: white;
     padding: 30px;
     background:blue;
