@@ -3,7 +3,7 @@
     src: url(fonts/sf-sports-night.regular.ttf);
 }
 body {
-    background-image: url("../images/background.JPG");
+    background-image: url("../images/background.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
