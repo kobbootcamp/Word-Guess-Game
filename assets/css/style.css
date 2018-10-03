@@ -1,19 +1,92 @@
+@font-face {
+    font-family: "SF Sports Night";
+    src: url("assets/css/fonts/SFSportsNight.eot");
+    /* src:  */
+    /* url("css/fonts/Harabara.woff") format("woff"), */
+    /* url("css/fonts/Harabara.otf") format("opentype"), */
+    /* url("css/fonts/Harabara.svg#filename") format("svg"); */
+    }
+
+body {
+        background-image: url("../images/background.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-color: #cccccc;
+        z-index:-1;
+     }
+
 #hangmanBox{
-    width: 250px;
-    background-color: blue;
-    color: white;
+    width: auto;
+    font-size: 60px;
+    color: black;
+    z-index:2;
+    text-align: center;
+    margin:0 auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
 
 }
 
 #lettersUsedBox{
-    width: 250px;
-    background-color: green;
+    width: auto;
+    background-color: blue;
+    border-style: solid;
+    border-width: 2px;
+    border-color: blue;
     color: white;
-
+    margin: 0 auto;
+    text-align: center;
+    font-size:30px;
+    padding: 10px;
 }
 #downAndDistance{
-    width: 250px;
-    background-color: orange;
+    width: 100%;
+    background: orange;
+    font-size: 50px;
     color: white;
+    z-index:2;
+    text-align: center;
+    margin:0 auto;
+}
+#pageTitle {
+    font-family: "SFSportsNight";
+    font-size: 40px;
+    color: white;
+    padding: 30px;
+    background:blue;
+    text-align: center;
+    border-style: solid;
+    border-width: 2px;
+    border-color: darkblue;
+    margin-top: 20px;
 
 }
+img {
+    Float:left;
+    z-index:2;
+}
+
+.card {
+    z-index: 1;
+    position: absolute;
+    Top: 211px;
+    left: 138px;
+}
+ #directions {
+     position: relative;
+     font-size: 30px;
+     text-align:center;
+ }
+
+ #lettersUsedTitle{
+    font-size: 30px;
+    color:blue;
+    margin: auto;
+    width: 40%;
+    text-align: center;
+    margin-top: 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: blue;
+ }

@@ -4,135 +4,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <title>Word Challenge</title>
-
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 
 <body>
+    <div class="container">
 
-    <h1>
-        <p id="hangmanBox"></p>
-    </h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="pageTitle"> Football Word Challenge</div>
+            </div>
+        </div>
+        <!--Row-->
 
-    <h1>
-        <p id="lettersUsedBox"></p>
-    </h1>
-    <h1>
-        <p id="downAndDistance"></p>
-    </h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron jumbotron-fluid">
+                    <p class="lead" id="directions">Click Kick Off to start. Guess the word by selecting letters.
+                        Each correct letter is a first down. Guess the word by correctly
+                        selecting the letters before running out of downs.</p>
+                    <hr class="my-4">
+                    <p id="downAndDistance"></p>
 
-    <script>
-        var usedArr = [];
-        var thisWord;
-        var thisWordArr = [];
-        var hangmanBox;
-        var down = 1;
-        var game = {
-            wordsToGuess: ["touchdown", "flag", "yardline", "forwardpass"],
-            downAndDistance: ["1st down", "2nd down", "3rd Down", "4th Down", "Turnover!"],
-            randomGenerator: function () {
-                var ranNum = Math.floor(Math.random() * 4);
-                thisWord = game.wordsToGuess[ranNum]
-                return ranNum;
-            },
-            displayBlanks: function (word) {
-                var wordHolder = "";
-                for (var i = 1; i <= word.length; i++) {
-                    wordHolder = wordHolder + " * ";
-                    thisWordArr.push(" * ");
-                    // console.log(thisWordArr[i])
-                }
-                return wordHolder;
-            },
-            writeToUsed: function (letterUsed) {
-                var temp = ""
-                usedArr.push(letterUsed);
-                for (var i = 0; i < usedArr.length; i++) {
-                    temp = temp + usedArr[i] + ",";
-                }
-                down++;
-                document.getElementById("lettersUsedBox").innerHTML = temp;
+                    <p id="hangmanBox"></p>
+                    <!-- <p class="lead"> -->
+                        <div id="lettersUsedTitle">Letters used:
+                        <p id="lettersUsedBox"></p>
+                        </div>
+                        <br />
+                        <p class="text-center"> <a class="btn btn-primary btn-lg text-center" 
+                            href="#" onclick="KickOff()" role="button">Kick Off</a></p>
+                        <!-- </p> -->
+                </div>
+            </div>
 
-                // console.log(usedArr[usedArr.length - 1]);
-            },
-            readLetter: function (letterUsed) {
-                for (var i = 0; i < thisWord.length; i++) {
-                    if (letterUsed === thisWord.charAt(i)) {
-                        // console.log("you got the letter " + letterUsed);
-                        thisWordArr[i] = thisWord.charAt(i);
-                        down = 1;
+        </div>
+
+
+
+
+
+        <script>
+            var usedArr = [];
+            var thisWord;
+            var thisWordArr = [];
+            // var hangmanBox;
+            var guessedLetter;
+            var down = 1;
+            var game = {
+                //array of words to guess
+                wordsToGuess: ["touchdown", "flag", "yardline", "forwardpass", "hike", "referee", "fieldgoal", "penalty", "facemask", "sack", "tackle", "quarterback"],
+                //array storing the verbage of down (sans distance)
+                downAndDistance: ["1st Down!", "2nd Down", "3rd Down", "4th Down", "Turnover!!"],
+                randomGenerator: function () {
+                    //used to pick a word randomly
+
+                    //declare the variable and assign a random number
+                    var ranNum = Math.floor(Math.random() * 12) -1;
+
+                    //update thisWord variable with the word for the game
+                    thisWord = game.wordsToGuess[ranNum]
+
+                    //return the selected word
+                    return thisWord;
+
+                },
+                displayBlanks: function (word) {
+                    //displays the number of letters in selected word
+
+                    //set the wordHolder to empty
+                    var wordHolder = "";
+
+                    //loop throught the number of letters in the word and create a * for each
+                    for (var i = 1; i <= word.length; i++) {
+                        wordHolder = wordHolder + " * ";
+
+                        //hold the string in an array
+                        thisWordArr.push(" * ");
                     }
-                }
-            },
-            displayThisWordArr: function () {
-                var temp = ""
-                for (var i = 0; i < thisWordArr.length; i++) {
-                    temp = temp + thisWordArr[i];
-                }
+                    //return the array
+                    return wordHolder;
+                },
+                checkLetterForUse: function (letterUsed) {
+                    //Check to see if letter was already used
 
-                // console.log(thisWordArr[i]);
-                document.getElementById("hangmanBox").innerHTML = temp;
-            },
-            didWeWin: function () {
-                var winner = true;
-                for (var i = 0; i < thisWordArr.length; i++) {
-                    if (thisWordArr[i] == " * ") {
-                        winner = false;
+                    //Declare local variable and initalize as false
+                    var letterAlreadyUsed = false
+
+                    //loop through the used letter array
+                    for (var i = 0; i < usedArr.length; i++) {
+
+                        //if you find the letter was used...
+                        if (letterUsed == usedArr[i]) {
+
+                            //change flag to true
+                            letterAlreadyUsed = true;
+                        }
                     };
-                };
-                if (winner) {
-                    return winner;
-                }
+                    //return the flag value
+                    return letterAlreadyUsed;
+                },
+                writeToUsed: function (letterUsed) {
+                    //Write the letter to used letter array
 
-            },
-            didWeLose: function() {
-                if (down = 5) {
-                    return false
+                    //initialize the local variabel to empty string
+                    var temp = ""
+
+                    //add the letter tot he used letter array
+                    usedArr.push(letterUsed);
+
+                    //update the variable storing the letters used, separated by commas
+                    for (var i = 0; i < usedArr.length; i++) {
+                        temp = temp + usedArr[i] + ",";
                     }
+
+                    //increment the down counter
+                    down++;
+
+                    //update the lettersUsedBox on the screen
+                    document.getElementById("lettersUsedBox").innerHTML = temp;
+
+                    //update the downAndDistance box on the screen
+                    document.getElementById("downAndDistance").innerHTML = game.downAndDistance[down - 1]
+                },
+                readLetter: function (letterUsed) {
+                    //read the letter and determine if it is a winner
+
+                    //loop through the length of the word, looking for a hit
+                    for (var i = 0; i < thisWord.length; i++) {
+
+                        //if you find a correct letter...
+                        if (letterUsed === thisWord.charAt(i)) {
+                            //replace the * with the correctly chosen letter in the thisWordArr array
+                            thisWordArr[i] = thisWord.charAt(i);
+                            //player gets a first down
+                            down = 1;
+
+                            //reset the downAndDistance div to show 1st and ten
+                            document.getElementById("downAndDistance").innerHTML = game.downAndDistance[down - 1];
+
+                            game.displayThisWordArr()
+                        }
+                    }
+                },
+                displayThisWordArr: function () {
+                    //used to display the correct letters and *'s in the "hang man box"
+
+                    //set the local variable to empty set
+                    var temp = ""
+
+                    //loop through the array and add each correct letter or * the temp variable
+                    for (var i = 0; i < thisWordArr.length; i++) {
+                        temp = temp + thisWordArr[i];
+                    }
+                    //display the results in the hangmanBox div
+                    document.getElementById("hangmanBox").innerHTML = temp;
+                },
+                didWeWin: function () {
+                    //checks to see if we have guessed all the letters
+                    //by determining if we have any *'s left
+
+                    //set the local winner variable to true 
+                    var winner = true;
+
+                    //loop throught the array
+                    for (var i = 0; i < thisWordArr.length; i++) {
+
+                        //if * is found, change the winner false
+                        if (thisWordArr[i] == " * ") {
+                            winner = false;
+                        };
+                    };
+                    //return the winner flag
+                    return winner;
+                },
+                didWeLose: function () {
+                    //check to see if we have exhausted all four downs, if so, return true
+                    if (down == 5) {
+                        return true;
+                    }
+
+                }
+            };
+
+            //click start to generate a new word
+            function KickOff() {
+                //randomly select a word from the choice of words
+                var wordToGuess = game.randomGenerator();
+
+                //clear the lettersUsedBox
+                document.getElementById("lettersUsedBox").innerHTML = "";
+
+                //Set up the hangmanbox
+                document.getElementById("hangmanBox").innerHTML = game.displayBlanks(wordToGuess);
+
+                //initiate the downAndDistance box
+                document.getElementById("downAndDistance").innerHTML = "Set...Hike!";
+
+                //reset the down to 1st
+                down = 1;
+
+                //reset the arrays
+                // thisWordArr = [];
+                // usedArr = [];
+                // thisWord="";
+                // guessedLetter="";
 
             }
-        };
 
 
-        //loop
+            //load the downAndDistance div
+            // document.getElementById("downAndDistance").innerHTML = game.downAndDistance[down-1];
 
-document.write(game.displayBlanks(game.wordsToGuess[game.randomGenerator()]));
-
-        // do {
-            // if (down < 5) {
-       
+            //listen for keystrokes
             document.onkeyup = function (event) {
-                game.writeToUsed(event.key);
-                game.readLetter(event.key);
-                game.displayThisWordArr();
-                if (game.didWeWin()) {
-                    document.getElementById("lettersUsedBox").innerHTML = "YOU WIN!"
-                };
-                if (game.didWeLose()) {
-                    document.getElementById("lettersUsedBox").innerHTML = "TURNOVER!  GAME OVER"
-                };
+                guessedLetter = event.key
 
+                //do we have a live game?
+                if (down < 5) {
+
+
+                    //if we checkLetterForUse is false (we haven't used the letter)...
+                    if (game.checkLetterForUse(guessedLetter) == false) {
+
+                        //register the key
+                        game.writeToUsed(guessedLetter);
+
+                        //check the letter for accuracy
+                        game.readLetter(guessedLetter);
+
+                        //update the correct guesses
+                        game.displayThisWordArr();
+
+                        //check to see is the game over
+
+                        //did we win?
+                        if (game.didWeWin()) {
+                            //update the screen
+                            document.getElementById("lettersUsedBox").innerHTML = "YOU WIN!"
+                            thisWordArr = [];
+                            usedArr = [];
+                        };
+
+                        //did we lose?
+                        if (game.didWeLose()) {
+                            //update the screen
+                            document.getElementById("lettersUsedBox").innerHTML = "Play again."
+                            thisWordArr = [];
+                            usedArr = [];
+                        };
+                    };
+
+                };
             };
-    
-        // else {
-            // document.getElementById("lettersUsedBox").innerHTML = "TURNOVER!  GAME OVER"
-        // };
-            // document.getElementById("lettersUsedBox").innerHTML = "TURNOVER!  GAME OVER"
-
-        // } while (down < 5);
-        // document.getElementById("lettersUsedBox").innerHTML = "TURNOVER!  GAME OVER"
-        // console.log(game.displayBlanks("roadrunner"));
-        // document.write(game.displayBlanks(game.wordsToGuess[game.randomGenerator()]));
-
-    </script>
-
-
+        </script>
 
 </body>
 
