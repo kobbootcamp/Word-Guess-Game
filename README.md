@@ -11,3 +11,5 @@ Previously guess words are displayed at the bottom of the screen.
 Guess the word before you run out of downs to win.
 If you run out of downs, you committed a turnover!  Game over.
 Click the Enter key or "Kick Off" to play again.
+
+This game uses HTML, CSS, and Javascript.
